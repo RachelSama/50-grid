@@ -40,14 +40,14 @@
       for (let j = 0; j < 5; j++) {
         const celda = document.createElement('div');
         celda.classList.add('celda');
-        const color = localStorage.getItem(`celda-${i}`);
+        const color = localStorage.getItem(`celda-${i}-${j}`);
         if (color === 'verde') {
           celda.classList.add('verde');
         }
         celda.addEventListener('click', () => {
           celda.classList.toggle('verde');
           const color = celda.classList.contains('verde') ? 'verde' : '';
-          localStorage.setItem(`celda-${i}`, color);
+          localStorage.setItem(`celda-${i}-${j}`, color);
         });
         fila.appendChild(celda);
       }
