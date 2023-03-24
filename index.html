@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabla con celdas verdes</title>
+  <style>
+    .tabla {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .fila {
+      display: flex;
+      flex-direction: row;
+    }
+    .celda {
+      width: 40px;
+      height: 40px;
+      margin: 2px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .celda.verde {
+      background-color: rgb(130, 177, 130);
+    }
+  </style>
+</head>
+<body>
+  <div class="tabla"></div>
+  <script>
+    const tabla = document.querySelector('.tabla');
+    for (let i = 0; i < 50; i++) {
+      const celda = document.createElement('div');
+      celda.classList.add('celda');
+      const color = localStorage.getItem(`celda-${i}`);
+      if (color === 'verde') {
+        celda.classList.add('verde');
+      }
+      celda.addEventListener('click', () => {
+        celda.classList.toggle('verde');
+        const color = celda.classList.contains('verde') ? 'verde' : '';
+        localStorage.setItem(`celda-${i}`, color);
+      });
+      tabla.appendChild(celda);
+      if ((i + 1) % 5 === 0) {
+        const fila = document.createElement('div');
+        fila.classList.add('fila');
+        tabla.appendChild(fila);
+      }
+    }
+  </script>
+</body>
+</html>
